@@ -2,7 +2,8 @@ extends Sprite
 onready var world = get_node("/root/World")
 
 func _ready():
-	world.connect('alarm', self, 'electricity_outage')
+	if world:
+		world.connect('alarm', self, 'electricity_outage')
 	on()
 	
 func electricity_outage(outage):

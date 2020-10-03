@@ -33,28 +33,39 @@ func disable_alarm_mode():
 func _physics_process(delta):
 	motion.y += GRAVITY * delta
 
-	if shoot_cooldown > 0:
-		shoot_cooldown -= delta
+	if !dead:
+		if shoot_cooldown > 0:
+			shoot_cooldown -= delta
 	
-	var see_player = false
+		var see_player = false
 	
-	if fov.is_colliding():
-		var collider = fov.get_collider()
-		if collider.is_in_group("Player"):
-			see_player = true
-			seen_player()
+		if fov.is_colliding():
+			var collider = fov.get_collider()
+			if collider.is_in_group("Player"):
+				see_player = true
+				seen_player()
 		
-	if state == STATE_ALERT and !see_player:
-		if $AlarmTimeout.is_stopped():
-			print("CANNOT SEE YOU!")
-			$AlarmTimeout.wait_time = rand_range(3.0, 5.0)
-			$AlarmTimeout.start()
+		if state == STATE_ALERT and !world.alarm and !see_player:
+			if $AlarmTimeout.is_stopped():
+				$AlarmTimeout.wait_time = rand_range(3.0, 5.0)
+				$AlarmTimeout.start()
+		
 		
 	if dead:
 		motion.x = lerp(motion.x, 0, 4 * delta)
-			
+	
 	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
+			
+	
 
+func die():
+	$CPUParticles2D.emitting = true
+	remove_from_group("Enemy")
+	$AnimationPlayer.play("Die")
+	$Sfx/Death.play()
+	$Visual/Fov.enabled = false
+	dead = true
+	world.disconnect("alarm", self, "alarm_enabled")
 
 func seen_player():
 	$AlarmTimeout.stop()
@@ -73,20 +84,23 @@ func seen_player():
 					
 func shoot(player):
 	$Sfx/Fire.play()
+	$AnimationPlayer.play("Shoot")
 	shoot_cooldown = SHOOT_COOLDOWN
 	player.die()
 	
 func _on_AlarmTimeout_timeout():
-	state = STATE_PATROL
-	$Visual/Body/Hand.show()
-	$Visual/Body/Gun.hide()
-	$Visual/Body/Hand/Flashlight/Light2D.enabled = true
-	$Visual/Body/Gun/Hand2/Flashlight/Light2D.enabled = false
+	if !dead:
+		state = STATE_PATROL
+		$Visual/Body/Hand.show()
+		$Visual/Body/Gun.hide()
+		$Visual/Body/Hand/Flashlight/Light2D.enabled = true
+		$Visual/Body/Gun/Hand2/Flashlight/Light2D.enabled = false
 
 func alarm_mode():
-	$Visual/Body/Hand.hide()
-	$Visual/Body/Gun.show()
-	$Visual/Body/Hand/Flashlight/Light2D.enabled = false
-	$Visual/Body/Gun/Hand2/Flashlight/Light2D.enabled = true
-	state = STATE_ALERT
+	if !dead:
+		$Visual/Body/Hand.hide()
+		$Visual/Body/Gun.show()
+		$Visual/Body/Hand/Flashlight/Light2D.enabled = false
+		$Visual/Body/Gun/Hand2/Flashlight/Light2D.enabled = true
+		state = STATE_ALERT
 	

@@ -36,11 +36,13 @@ func charge(value):
 		current_charge_cooldown = CHARGE_COOLDOWN
 		
 func stop_alarm():
+	$CanvasLayer/AlertLabel.hide()
 	emit_signal("alarm", false)
 	$Alarm.stop()
 	alarm = false
 
 func fire_alarm():
+	$CanvasLayer/AlertLabel.show()
 	emit_signal("alarm", true)
 	$Alarm.fire()
 	alarm = true

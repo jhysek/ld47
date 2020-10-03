@@ -126,10 +126,12 @@ func player_physics_process(delta):
 	motion.y += GRAVITY * delta
 
 	if attack_range.is_colliding():
-			var collider = attack_range.get_collider()
-			if collider.is_in_group("Enemy"):
-				collider.remove_from_group("Enemy")
-				dash()		
+		print("COLLIDING!")
+		var collider = attack_range.get_collider()
+		if collider.is_in_group("Enemy"):
+			collider.remove_from_group("Enemy")
+			collider.die()
+			dash()		
 	
 	if not dead:
 		if dashing:
