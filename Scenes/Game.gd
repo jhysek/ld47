@@ -11,15 +11,14 @@ onready var electricity = $CanvasLayer/Electricity
 ### run variables ###################################
 var current_charge_cooldown = CHARGE_COOLDOWN
 var alarm = false
-
-
+var started = false
 
 func _ready():
 	print("READY");
 	$CanvasLayer/Transition.open()
 
 func _process(delta):
-	if electricity.value > 0:
+	if started and electricity.value > 0:
 		electricity.value -= delta
 
 		if (alarm):

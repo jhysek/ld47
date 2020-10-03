@@ -1,12 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/RUBBBB__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/yoster-island.regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=2]
 [ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/Transition/Transition.shader" type="Shader" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 40
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0, 0.027451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 1 )
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -32,15 +45,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="CanvasLayer/UI"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -214.301
-margin_top = 84.9639
-margin_right = 217.699
-margin_bottom = 150.964
+margin_left = -233.763
+margin_top = 85.6983
+margin_right = 198.237
+margin_bottom = 151.698
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.843137, 0, 0, 1 )
-text = "Game Title"
+custom_colors/font_color = Color( 0.6, 0, 0.027451, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Gorilla Power"
 align = 1
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,11 +63,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -32.3389
-margin_top = -18.4964
-margin_right = 47.6611
-margin_bottom = 1.5036
-text = "Start game"
+margin_left = -112.0
+margin_top = -18.0
+margin_right = 68.0
+margin_bottom = 30.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+text = "START GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -65,11 +81,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -23.3459
 margin_bottom = -9.34595
+custom_fonts/font = SubResource( 3 )
 text = "made in 48 hours for Ludum Dare 47 compo by Jiri Hysek"
 align = 1
 
 [node name="Transition" parent="CanvasLayer" instance=ExtResource( 3 )]
 material = SubResource( 2 )
+margin_left = 0.644928
+margin_top = 4.42786
+margin_right = 0.644897
+margin_bottom = 4.42786
 
 [node name="Sfx" type="Node" parent="."]
 

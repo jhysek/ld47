@@ -7,8 +7,11 @@ export var JUMP_SPEED  = -1200
 export var DASH_SPEED = 100000
 export var DASH_DURATION = 0.08
 export var PLAYER_SCALE = 0.4
+export var PLAYER = true
 
 ### nodes #######################################
+onready var world = get_node("/root/World")
+
 onready var anim = $AnimationPlayer
 onready var cam  = $Camera2D
 onready var sfx_run = $Sfx/Run
@@ -60,6 +63,7 @@ func controlled_process(delta):
 	
 	if !dead:
 		if not in_air and Input.is_action_just_pressed("ui_up"):
+			start_world()
 			in_air = true
 			airtime = 0
 			jump_timeout = 0
@@ -69,6 +73,7 @@ func controlled_process(delta):
 			sfx_run.stop()
 	
 		if Input.is_action_pressed('ui_right'):
+			start_world()
 			if !in_air and anim.current_animation != "RunRight":
 			  anim.play("RunRight")
 			  direction = 1
@@ -78,6 +83,7 @@ func controlled_process(delta):
 				sfx_run.play()
 				
 		if Input.is_action_pressed('ui_left'):
+			start_world()
 			if not in_air and anim.current_animation != "RunLeft":
 			  anim.play("RunLeft")
 			  direction = -1
@@ -98,6 +104,10 @@ func controlled_process(delta):
 		motion.x = 0
 
 
+func start_world():
+	if !world.started:
+		world.started = true
+
 func dash():
 	anim.play("Dash")
 	dash_timeout = DASH_DURATION
@@ -111,15 +121,15 @@ func dash_process(delta):
 		dashing = false
 		motion.x = 0
 		
-	
-func _physics_process(delta):
+		
+func player_physics_process(delta):
 	motion.y += GRAVITY * delta
-	
+
 	if attack_range.is_colliding():
-		var collider = attack_range.get_collider()
-		if collider.is_in_group("Enemy"):
-			collider.remove_from_group("Enemy")
-			dash()		
+			var collider = attack_range.get_collider()
+			if collider.is_in_group("Enemy"):
+				collider.remove_from_group("Enemy")
+				dash()		
 	
 	if not dead:
 		if dashing:
@@ -133,7 +143,21 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
 
 
+func die():
+	if !dead:
+		dead = true
+		anim.play("Die")
+
+func hamster_physics_process(delta):
+	pass
+
+func _physics_process(delta):	
+	if PLAYER: 
+		player_physics_process(delta)
+	else:
+		hamster_physics_process(delta)
+
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "Dash":
+	if anim_name == "Dash" or anim_name == "WheelStep":
 		anim.play("Idle")
