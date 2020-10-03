@@ -1,6 +1,7 @@
 extends Node2D
 
 signal alarm
+signal pause
 
 ### settings ########################################
 export var CHARGE_COOLDOWN  = 0.1
@@ -12,15 +13,27 @@ onready var electricity = $CanvasLayer/Electricity
 var current_charge_cooldown = CHARGE_COOLDOWN
 var alarm = false
 var started = false
+var paused = false
 
 func _ready():
-	print("READY");
 	$CanvasLayer/Transition.open()
 
 func restart():
 	$CanvasLayer/Transition.close("res://Scenes/Game.tscn")
 
 func _process(delta):
+	if Input.is_action_just_pressed("restart"):
+		restart()
+	
+	if Input.is_action_just_pressed("pause"):
+		if paused:
+			unpause()
+		else:
+			pause()
+	
+	if paused:
+		return
+		
 	if started and electricity.value > 0:
 		electricity.value -= delta
 
@@ -31,9 +44,6 @@ func _process(delta):
 			fire_alarm()
 		
 	current_charge_cooldown -= delta	
-
-	if Input.is_action_just_pressed("restart"):
-		restart()
 
 
 func charge(value):
@@ -59,3 +69,16 @@ func player_died():
 	
 func _on_RestartTimer_timeout():
 	restart()
+
+func pause():
+	$CanvasLayer/UI/Pause.show()
+	paused = true
+	emit_signal("pause", true)
+	
+func unpause():
+	$CanvasLayer/UI/Pause.hide()
+	paused = false
+	emit_signal("pause", false)
+
+func _on_ButtonResume2_pressed():
+	$CanvasLayer/Transition.close("res://Scenes/Menu.tscn")

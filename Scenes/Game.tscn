@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=2]
@@ -73,6 +73,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.443137 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 14 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.447059, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 14 )
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 27.0967
@@ -179,6 +195,53 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Info"]
 anims/Show = SubResource( 7 )
 
+[node name="Pause" type="Panel" parent="CanvasLayer/UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -164.0
+margin_top = -105.0
+margin_right = 164.0
+margin_bottom = 105.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Pause"]
+margin_left = 34.0
+margin_top = 20.0
+margin_right = 296.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 9 )
+text = "PAUSED"
+align = 1
+
+[node name="ButtonResume" type="Button" parent="CanvasLayer/UI/Pause"]
+margin_left = 81.4229
+margin_top = 80.9294
+margin_right = 241.423
+margin_bottom = 122.929
+custom_styles/hover = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
+text = "RESUME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonResume2" type="Button" parent="CanvasLayer/UI/Pause"]
+margin_left = 81.4229
+margin_top = 141.596
+margin_right = 241.423
+margin_bottom = 183.596
+custom_styles/hover = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SafeDoor" parent="." instance=ExtResource( 15 )]
 position = Vector2( -561.294, 576.222 )
 
@@ -233,4 +296,6 @@ environment = SubResource( 5 )
 
 [node name="RestartTimer" type="Timer" parent="."]
 one_shot = true
+[connection signal="pressed" from="CanvasLayer/UI/Pause/ButtonResume" to="." method="unpause"]
+[connection signal="pressed" from="CanvasLayer/UI/Pause/ButtonResume2" to="." method="_on_ButtonResume2_pressed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]

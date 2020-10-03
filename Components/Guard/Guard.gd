@@ -15,6 +15,7 @@ onready var anim = $AnimationPlayer
 const STATE_PATROL = 1
 const STATE_ALERT  = 2
 
+var pause = false
 var dead = false
 var motion = Vector2(0,0)
 var patrol_motion = Vector2(0,0)
@@ -25,11 +26,13 @@ var alarm_patrol_route = []
 var current_route = []
 var target = null
 var next_patrol_point_idx = 0
+var paused_anim = null
 
 
 func _ready():
 	initialize_routes()
 	world.connect("alarm", self, "alarm_enabled")
+	world.connect("pause", self, "pause_signal")
 	set_physics_process(true)
 
 func initialize_routes():
@@ -60,6 +63,9 @@ func disable_alarm_mode():
 
 
 func _physics_process(delta):
+	if pause:
+		return
+		
 	motion.y += GRAVITY * delta
 
 	if !dead:
@@ -167,3 +173,10 @@ func alarm_mode():
 		$Visual/Body/Gun/Hand2/Flashlight/Light2D.enabled = true
 		state = STATE_ALERT
 	
+func pause_signal(paused):
+	pause = paused
+	if pause:
+		paused_anim = $AnimationPlayer.current_animation
+		$AnimationPlayer.stop()
+	else:
+		$AnimationPlayer.play(paused_anim)
