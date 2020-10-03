@@ -35,6 +35,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		restart()
 
+
 func charge(value):
 	if current_charge_cooldown <= 0:
 		electricity.value += value

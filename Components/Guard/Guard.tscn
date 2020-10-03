@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Components/Guard/Assets/body.png" type="Texture" id=1]
 [ext_resource path="res://Components/Guard/Assets/head.png" type="Texture" id=2]
@@ -301,6 +301,160 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "WalkLeft"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/Body/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.01215, -2.68288 ), Vector2( -9.52886, -2.68288 ), Vector2( -2.01215, -2.68288 ), Vector2( 6.95943, -3.89525 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/Body/Hand:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 8.70269, 5.13836, -10.2099 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/Body/Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.800873, -37.3121 ), Vector2( 0.800873, -33.0685 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/Body/Gun/Exclamation:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.435275, 1 ),
+"update": 0,
+"values": [ Vector2( -40.4347, -112.6 ), Vector2( -40.3565, -121.166 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Visual:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -0.4, 0.4 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayer:playback_speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "WalkRight"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/Body/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.01215, -2.68288 ), Vector2( -9.52886, -2.68288 ), Vector2( -2.01215, -2.68288 ), Vector2( 6.95943, -3.89525 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/Body/Hand:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 8.70269, 5.13836, -10.2099 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/Body/Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.800873, -37.3121 ), Vector2( 0.800873, -33.0685 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/Body/Gun/Exclamation:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.435275, 1 ),
+"update": 0,
+"values": [ Vector2( -40.4347, -112.6 ), Vector2( -40.3565, -121.166 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Visual:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.4, 0.4 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationPlayer:playback_speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.536424, 0.711921, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.211674, 0.211674, 0.211674, 1, 0.827451, 0.827451, 0.827451, 1, 1, 1, 1, 0 )
@@ -420,10 +574,12 @@ stream = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-playback_speed = 3.0
+playback_speed = 2.0
 anims/Die = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Shoot = SubResource( 4 )
+anims/WalkLeft = SubResource( 8 )
+anims/WalkRight = SubResource( 7 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -459,11 +615,11 @@ position = Vector2( -103.891, -2.37918 )
 [node name="Position2D2" type="Position2D" parent="Patrol"]
 position = Vector2( 105.477, -3.17224 )
 
-[node name="Alarm" type="Node2D" parent="."]
+[node name="AlarmPatrol" type="Node2D" parent="."]
 
-[node name="Position2D" type="Position2D" parent="Alarm"]
+[node name="Position2D" type="Position2D" parent="AlarmPatrol"]
 position = Vector2( -30.5328, -0.79306 )
 
-[node name="Position2D2" type="Position2D" parent="Alarm"]
+[node name="Position2D2" type="Position2D" parent="AlarmPatrol"]
 position = Vector2( 28.9467, 0.396545 )
 [connection signal="timeout" from="AlarmTimeout" to="." method="_on_AlarmTimeout_timeout"]

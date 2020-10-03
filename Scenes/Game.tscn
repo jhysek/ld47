@@ -218,10 +218,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 4 )
 
 [node name="Guard" parent="." instance=ExtResource( 7 )]
-position = Vector2( -71.5478, 620.456 )
-
-[node name="Guard2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 561.69, 484.362 )
+position = Vector2( -371.085, 620.949 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( -727.125, 455.987 )
