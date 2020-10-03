@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=2]
@@ -16,13 +16,13 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.160784, 0.160784, 0.160784, 1 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 
-[sub_resource type="TileSet" id=6]
+[sub_resource type="TileSet" id=5]
 0/name = "icon.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -30,19 +30,25 @@ points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 0/region = Rect2( 0, 0, 128, 128 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
-0/occluder = SubResource( 4 )
+0/occluder = SubResource( 3 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 498.048, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10.3254, 28.9554 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 27.0967
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -67,10 +73,10 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 6 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 128, 128 )
 format = 1
-tile_data = PoolIntArray( 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262148, 0, 0, 262149, 0, 0, 393198, 0, 0, 393199, 0, 0, 393200, 0, 0, 393201, 0, 0, 393202, 0, 0, 393203, 0, 0, 393204, 0, 0, 393205, 0, 0, 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393231, 0, 0, 458752, 0, 0, 655372, 0, 0 )
+tile_data = PoolIntArray( 131064, 0, 0, 196600, 0, 0, 262136, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 327672, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262148, 0, 0, 262149, 0, 0, 393198, 0, 0, 393199, 0, 0, 393200, 0, 0, 393201, 0, 0, 393202, 0, 0, 393203, 0, 0, 393204, 0, 0, 393205, 0, 0, 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393231, 0, 0, 458752, 0, 0, 655372, 0, 0 )
 
 [node name="Wheel" parent="." instance=ExtResource( 3 )]
 
@@ -88,7 +94,7 @@ script = ExtResource( 8 )
 position = Vector2( 336.815, 678.559 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="StreetLamp" type="Sprite" parent="."]
 
@@ -110,3 +116,30 @@ texture = ExtResource( 7 )
 offset = Vector2( -6.24301, -146.507 )
 color = Color( 0.992157, 0.882353, 0.54902, 1 )
 shadow_enabled = true
+
+[node name="Enemy" type="KinematicBody2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -732.447, 491.89 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Enemy"]
+position = Vector2( -0.679348, -3.05733 )
+scale = Vector2( 0.278131, 0.516985 )
+texture = ExtResource( 6 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=[
+"Enemy",
+]]
+position = Vector2( -325.2, 353.408 )
+mass = 10.0
+gravity_scale = 5.0
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+scale = Vector2( 0.319999, 0.480001 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 8 )

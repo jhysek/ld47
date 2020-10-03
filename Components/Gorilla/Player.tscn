@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Components/Gorilla/Assets/back_right_leg.png" type="Texture" id=1]
 [ext_resource path="res://Components/Gorilla/Assets/front_left_leg.png" type="Texture" id=2]
@@ -8,13 +8,89 @@
 [ext_resource path="res://Components/Gorilla/Assets/front_right_leg.png" type="Texture" id=6]
 [ext_resource path="res://Components/Gorilla/Player.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.7525, 22.113 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
+resource_name = "Dash"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visual/Body:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -16.4774, -16.4774, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visual/FrontLeftLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 21.6197, 12.59 ), Vector2( 37.5749, -15.1302 ), Vector2( 37.5749, -15.1302 ), Vector2( 21.6197, 12.59 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visual/FrontLeftLeg:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -98.3485, -98.3485, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Visual/FrontRightLeg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6.36302, 7.96384 ), Vector2( 6.36302, 7.96384 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Visual/FrontRightLeg:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -73.206, -73.206, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
@@ -77,7 +153,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Visual/Body/FrontRightLeg:position")
+tracks/5/path = NodePath("Visual/FrontRightLeg:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -89,7 +165,7 @@ tracks/5/keys = {
 "values": [ Vector2( 6.36302, 7.96384 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Visual/Body/FrontRightLeg:rotation_degrees")
+tracks/6/path = NodePath("Visual/FrontRightLeg:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -197,7 +273,7 @@ tracks/14/keys = {
 "values": [ 0.80192 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Jump"
 length = 2.0
 loop = true
@@ -262,7 +338,7 @@ tracks/4/keys = {
 "values": [ 0.0, 11.4223, 27.7725, -23.4795, -18.6606, 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Visual/Body/FrontRightLeg:rotation_degrees")
+tracks/5/path = NodePath("Visual/FrontRightLeg:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -310,7 +386,7 @@ tracks/8/keys = {
 "values": [ Vector2( 21.6197, 12.59 ), Vector2( 20.3722, 7.91182 ), Vector2( 25.0504, -0.664925 ), Vector2( 8.94056, -34.2359 ), Vector2( 8.94056, -34.2359 ), Vector2( 20.34, -4.9393 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Visual/Body/FrontRightLeg:position")
+tracks/9/path = NodePath("Visual/FrontRightLeg:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -394,8 +470,7 @@ tracks/15/keys = {
 "values": [ 0.0, -3.04115, -34.563, -10.8619, -10.8619, 30.7824, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "RunLeft"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
@@ -458,7 +533,7 @@ tracks/4/keys = {
 "values": [ 0.0, 11.4223, 27.7725, -23.4795, -18.6606 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Visual/Body/FrontRightLeg:rotation_degrees")
+tracks/5/path = NodePath("Visual/FrontRightLeg:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -506,7 +581,7 @@ tracks/8/keys = {
 "values": [ Vector2( 21.6197, 12.59 ), Vector2( 20.3722, 7.91182 ), Vector2( 25.0504, -0.664925 ), Vector2( 8.94056, -34.2359 ), Vector2( 20.34, -4.9393 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Visual/Body/FrontRightLeg:position")
+tracks/9/path = NodePath("Visual/FrontRightLeg:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -590,8 +665,7 @@ tracks/15/keys = {
 "values": [ 0.0, -3.04115, 6.61402 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "RunRight"
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
@@ -654,7 +728,7 @@ tracks/4/keys = {
 "values": [ 0.0, 11.4223, 27.7725, -23.4795, -18.6606 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Visual/Body/FrontRightLeg:rotation_degrees")
+tracks/5/path = NodePath("Visual/FrontRightLeg:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -702,7 +776,7 @@ tracks/8/keys = {
 "values": [ Vector2( 21.6197, 12.59 ), Vector2( 20.3722, 7.91182 ), Vector2( 25.0504, -0.664925 ), Vector2( 8.94056, -34.2359 ), Vector2( 20.34, -4.9393 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Visual/Body/FrontRightLeg:position")
+tracks/9/path = NodePath("Visual/FrontRightLeg:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -795,11 +869,11 @@ PLAYER_SCALE = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.39671, 4.02219 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( 0, 0.155941 )
-occluder = SubResource( 4 )
+occluder = SubResource( 2 )
 
 [node name="Visual" type="Node2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -818,7 +892,7 @@ position = Vector2( 44.6523, -3.74934 )
 texture = ExtResource( 5 )
 offset = Vector2( 5.35014, -13.0822 )
 
-[node name="FrontRightLeg" type="Sprite" parent="Visual/Body"]
+[node name="FrontRightLeg" type="Sprite" parent="Visual"]
 position = Vector2( 6.36302, 7.96384 )
 texture = ExtResource( 6 )
 offset = Vector2( 4.66114, 22.9432 )
@@ -835,13 +909,19 @@ rotation = 0.0139961
 texture = ExtResource( 1 )
 offset = Vector2( -12.3745, 13.1706 )
 
+[node name="AttackRange" type="RayCast2D" parent="Visual"]
+position = Vector2( 62.5315, -17.0834 )
+scale = Vector2( 2, 2 )
+enabled = true
+cast_to = Vector2( 90, 0 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
-playback_speed = 3.0
-anims/Idle = SubResource( 1 )
-anims/Jump = SubResource( 6 )
-anims/RunLeft = SubResource( 5 )
-anims/RunRight = SubResource( 2 )
+anims/Dash = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Jump = SubResource( 5 )
+anims/RunLeft = SubResource( 6 )
+anims/RunRight = SubResource( 7 )
 blend_times = [ "Idle", "RunLeft", 0.2, "Idle", "RunRight", 0.2 ]
 
 [node name="Sfx" type="Node" parent="."]
@@ -849,3 +929,4 @@ blend_times = [ "Idle", "RunLeft", 0.2, "Idle", "RunRight", 0.2 ]
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx"]
 
 [node name="Run" type="AudioStreamPlayer" parent="Sfx"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
