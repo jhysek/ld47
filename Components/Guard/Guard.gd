@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 ### Settings ############################################
 export var GRAVITY = 70 * 70 
-export var SPEED   = 10000
+export var SPEED   = 2000
+export var ALERT_SPEED   = 3000
 export var SHOOT_COOLDOWN = 0.5
 
 ### Nodes ##############################################
@@ -103,12 +104,16 @@ func get_next_patrol_point():
 	next_patrol_point_idx = (next_patrol_point_idx + 1) % current_route.size()
 	target = current_route[next_patrol_point_idx]
 		
+	var speed = SPEED
+	if state == STATE_ALERT:
+		speed = ALERT_SPEED
+		
 	if target.x >= position.x:
-		patrol_motion = Vector2(SPEED, 0)
+		patrol_motion = Vector2(speed, 0)
 		anim.play("WalkRight")
 				
 	else:
-		patrol_motion = Vector2(-SPEED, 0)
+		patrol_motion = Vector2(-speed, 0)
 		anim.play("WalkLeft")
 	
 
