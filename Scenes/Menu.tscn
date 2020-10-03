@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/RUBBBB__.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=2]
+[ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/Transition/Transition.shader" type="Shader" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+shader_param/progress = null
+shader_param/diamondPixelSize = 130.0
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 2 )
@@ -60,6 +67,9 @@ margin_top = -23.3459
 margin_bottom = -9.34595
 text = "made in 48 hours for Ludum Dare 47 compo by Jiri Hysek"
 align = 1
+
+[node name="Transition" parent="CanvasLayer" instance=ExtResource( 3 )]
+material = SubResource( 2 )
 
 [node name="Sfx" type="Node" parent="."]
 
