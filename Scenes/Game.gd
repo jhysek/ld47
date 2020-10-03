@@ -17,6 +17,9 @@ func _ready():
 	print("READY");
 	$CanvasLayer/Transition.open()
 
+func restart():
+	$CanvasLayer/Transition.close("res://Scenes/Game.tscn")
+
 func _process(delta):
 	if started and electricity.value > 0:
 		electricity.value -= delta
@@ -29,6 +32,8 @@ func _process(delta):
 		
 	current_charge_cooldown -= delta	
 
+	if Input.is_action_just_pressed("restart"):
+		restart()
 
 func charge(value):
 	if current_charge_cooldown <= 0:
@@ -46,3 +51,10 @@ func fire_alarm():
 	emit_signal("alarm", true)
 	$Alarm.fire()
 	alarm = true
+
+func player_died():
+	$CanvasLayer/UI/Info/AnimationPlayer.play("Show")
+	$RestartTimer.start()
+	
+func _on_RestartTimer_timeout():
+	restart()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/yoster-island.regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=2]
@@ -7,25 +7,26 @@
 [ext_resource path="res://Assets/tilemap.tres" type="TileSet" id=5]
 [ext_resource path="res://Components/Wheel/Wheel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/SafeDoor/SafeDoor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=8]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
 shader_param/progress = null
 shader_param/diamondPixelSize = 130.0
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.52549, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=6]
 size = 45
 font_data = ExtResource( 1 )
 
@@ -57,7 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -23.3459
 margin_bottom = -9.34595
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 text = "made in 48 hours for Ludum Dare 47 compo by Jiri Hysek"
 align = 1
 __meta__ = {
@@ -65,7 +66,7 @@ __meta__ = {
 }
 
 [node name="Transition" parent="CanvasLayer" instance=ExtResource( 3 )]
-material = SubResource( 6 )
+material = SubResource( 2 )
 margin_left = 0.644928
 margin_top = 4.42786
 margin_right = 0.644897
@@ -93,9 +94,9 @@ margin_left = 260.493
 margin_top = -75.5509
 margin_right = 440.493
 margin_bottom = -27.5509
-custom_styles/hover = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "START GAME"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,7 +109,7 @@ margin_left = -340.805
 margin_top = -179.617
 margin_right = 91.195
 margin_bottom = -113.618
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.52549, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "GORILLA  POWER"
@@ -116,4 +117,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 [connection signal="pressed" from="Wheel/Start Game" to="." method="_on_Start_Game_pressed"]

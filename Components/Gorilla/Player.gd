@@ -8,6 +8,7 @@ export var DASH_SPEED = 100000
 export var DASH_DURATION = 0.08
 export var PLAYER_SCALE = 0.4
 export var PLAYER = true
+export var GIRL = false
 
 ### nodes #######################################
 onready var world = get_node("/root/World")
@@ -30,7 +31,9 @@ var airtime = 0
 var direction = 1
 
 func _ready():
-	$Visual
+	if GIRL:
+		$Visual/Body/Head.texture = load("res://Components/Gorilla/Assets/head_girl.png")
+
 	set_physics_process(true)
 
 
@@ -149,6 +152,7 @@ func die():
 	if !dead:
 		dead = true
 		anim.play("Die")
+		world.player_died()
 
 func hamster_physics_process(delta):
 	pass

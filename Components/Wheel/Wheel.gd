@@ -16,7 +16,7 @@ func _ready():
 	if MENU:
 		anim.play("WheelStep")
 		speed = MAX_SPEED
-
+		
 	set_process(true)
 
 func _process(delta):

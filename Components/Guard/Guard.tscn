@@ -16,7 +16,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.10361, 20.4099 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
@@ -211,8 +211,7 @@ tracks/15/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -264,8 +263,7 @@ tracks/3/keys = {
 "values": [ Vector2( -40.4347, -112.6 ), Vector2( -40.3565, -121.166 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Shoot"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body/Gun:rotation_degrees")
 tracks/0/interp = 1
@@ -423,9 +421,9 @@ stream = ExtResource( 6 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 3.0
-anims/Die = SubResource( 4 )
-anims/Idle = SubResource( 2 )
-anims/Shoot = SubResource( 3 )
+anims/Die = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Shoot = SubResource( 4 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -439,7 +437,6 @@ emission_shape = 2
 emission_rect_extents = Vector2( 10, 10 )
 direction = Vector2( 1, -1 )
 spread = 98.23
-gravity = Vector2( 0, 98 )
 initial_velocity = 200.0
 initial_velocity_random = 1.0
 angular_velocity = 10.0
@@ -453,5 +450,20 @@ hue_variation = 0.28
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-animation = "New Anim"
+
+[node name="Patrol" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Patrol"]
+position = Vector2( -103.891, -2.37918 )
+
+[node name="Position2D2" type="Position2D" parent="Patrol"]
+position = Vector2( 105.477, -3.17224 )
+
+[node name="Alarm" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Alarm"]
+position = Vector2( -30.5328, -0.79306 )
+
+[node name="Position2D2" type="Position2D" parent="Alarm"]
+position = Vector2( 28.9467, 0.396545 )
 [connection signal="timeout" from="AlarmTimeout" to="." method="_on_AlarmTimeout_timeout"]

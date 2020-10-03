@@ -34,3 +34,4 @@ texture = ExtResource( 2 )
 position = Vector2( -15.1005, 53.8087 )
 rotation = 0.332338
 PLAYER = false
+GIRL = true
