@@ -139,6 +139,7 @@ func die():
 
 	$DisableTimer.wait_time = 5
 	$DisableTimer.start()
+	world.add_kill()
 		
 	remove_from_group("Enemy")
 	if $Visual.scale.x < 0:

@@ -16,6 +16,9 @@ var started = true
 var paused = false
 var generator = false
 
+var time = 0
+var kills = 0
+
 var checkpoint = null
 
 func _ready():
@@ -36,6 +39,8 @@ func _process(delta):
 	
 	if paused:
 		return
+		
+	time += delta
 		
 	if started and !generator and electricity.value > 0:
 		electricity.value -= delta
@@ -100,16 +105,21 @@ func unpause():
 func _on_ButtonResume2_pressed():
 	$CanvasLayer/Transition.close("res://Scenes/Menu.tscn")
 
-
 func _on_GameFinishedTimer_timeout():
 	$CanvasLayer/Transition.close("res://Scenes/Outro.tscn")
-	print("GAME FINISHED!")
 
 func checkpoint_reached(check):
 	if !checkpoint or checkpoint.number < check.number:
 		checkpoint = check
 		$Player.new_checkpoint_reached()
 
-
 func _on_ResurrectTimer_timeout():
 	reset_to_checkpoint()
+
+func add_kill():
+	kills += 1
+	$CanvasLayer/Kills.text = str(kills)
+	
+func show_time():
+	var seconds = int(time)
+	$CanvasLayer/Time.text = "%02d:%02d" % [floor(seconds / 60), seconds % 60]

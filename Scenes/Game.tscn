@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Components/Wheel/Wheel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/Alarm/Alarm.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/Gorilla/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/Guard/Assets/hat.png" type="Texture" id=6]
 [ext_resource path="res://Components/Guard/Guard.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=8]
 [ext_resource path="res://Components/Box/bolt.png" type="Texture" id=9]
@@ -22,6 +23,7 @@
 [ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=21]
 [ext_resource path="res://Components/Box/Box.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Components/Checkpoint/Checkpoint.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Components/Guard/Assets/head.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.905882, 0.737255, 0.0627451, 1 )
@@ -141,7 +143,6 @@ margin_bottom = 22.2576
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 5.0
-step = 0.01
 value = 0.2
 percent_visible = false
 __meta__ = {
@@ -165,6 +166,42 @@ custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.839216, 0, 0, 1 )
 text = "POWER OUTAGE"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kills" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -154.302
+margin_top = 15.1782
+margin_right = -62.3019
+margin_bottom = 46.1782
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.839216, 0, 0, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Kills"]
+position = Vector2( -19.5741, 10.7638 )
+scale = Vector2( 0.403015, 0.414928 )
+texture = ExtResource( 24 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Kills/Sprite"]
+position = Vector2( 3.10071, -16.2035 )
+texture = ExtResource( 6 )
+
+[node name="Time" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -87.9326
+margin_top = 14.8343
+margin_right = 4.06738
+margin_bottom = 45.8343
+custom_fonts/font = SubResource( 3 )
+text = "00:00"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -266,7 +303,7 @@ position = Vector2( 305.786, 609.045 )
 position = Vector2( -335.634, 609.045 )
 
 [node name="SafeDoor9" parent="SafetyDoors" instance=ExtResource( 15 )]
-position = Vector2( -112.71, 606.31 )
+position = Vector2( -113.276, 608.575 )
 
 [node name="SafeDoor3" parent="SafetyDoors" instance=ExtResource( 15 )]
 position = Vector2( -1774.75, 122.724 )
@@ -678,8 +715,12 @@ number = 3
 
 [node name="ResurrectTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="TimeRefresher" type="Timer" parent="."]
+autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/Pause/ButtonResume" to="." method="unpause"]
 [connection signal="pressed" from="CanvasLayer/UI/Pause/ButtonResume2" to="." method="_on_ButtonResume2_pressed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
 [connection signal="timeout" from="GameFinishedTimer" to="." method="_on_GameFinishedTimer_timeout"]
 [connection signal="timeout" from="ResurrectTimer" to="." method="_on_ResurrectTimer_timeout"]
+[connection signal="timeout" from="TimeRefresher" to="." method="show_time"]
