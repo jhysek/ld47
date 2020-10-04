@@ -16,6 +16,8 @@ var started = true
 var paused = false
 var generator = false
 
+var checkpoint = null
+
 func _ready():
 	$CanvasLayer/Transition.open()
 
@@ -73,8 +75,14 @@ func fire_alarm():
 	alarm = true
 
 func player_died():
-	$CanvasLayer/UI/Info/AnimationPlayer.play("Show")
-	$RestartTimer.start()
+	if checkpoint:
+		$ResurrectTimer.start()
+	else:
+		$CanvasLayer/UI/Info/AnimationPlayer.play("Show")
+		$RestartTimer.start()
+	
+func reset_to_checkpoint():
+	$Player.resurrect_at(checkpoint.position)
 	
 func _on_RestartTimer_timeout():
 	restart()
@@ -96,3 +104,12 @@ func _on_ButtonResume2_pressed():
 func _on_GameFinishedTimer_timeout():
 	$CanvasLayer/Transition.close("res://Scenes/Outro.tscn")
 	print("GAME FINISHED!")
+
+func checkpoint_reached(check):
+	if !checkpoint or checkpoint.number < check.number:
+		checkpoint = check
+		$Player.new_checkpoint_reached()
+
+
+func _on_ResurrectTimer_timeout():
+	reset_to_checkpoint()

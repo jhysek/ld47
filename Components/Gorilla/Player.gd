@@ -129,7 +129,7 @@ func dash_process(delta):
 func player_physics_process(delta):
 	motion.y += GRAVITY * delta
 
-	if attack_range.is_colliding():
+	if !dead and attack_range.is_colliding():
 		var collider = attack_range.get_collider()
 		if collider.is_in_group("Enemy"):
 			collider.remove_from_group("Enemy")
@@ -156,6 +156,12 @@ func die():
 		anim.play("Die")
 		world.player_died()
 
+
+func resurrect_at(pos):
+	position = pos
+	dead = false
+	anim.play("Idle")
+
 func hamster_physics_process(delta):
 	pass
 
@@ -167,5 +173,8 @@ func _physics_process(delta):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "Dash" or anim_name == "WheelStep":
+	if !dead and (anim_name == "Dash" or anim_name == "WheelStep"):
 		anim.play("Idle")
+
+func new_checkpoint_reached():
+	$Sfx.get_node("Roger" + str(randi() % 2 + 1)).play()

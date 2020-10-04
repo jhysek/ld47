@@ -3,6 +3,7 @@ extends Sprite
 onready var world = get_node("/root/World")
 
 func power_on():
+	$TurnOn.play()
 	$HandleOff.hide()
 	$HandleOn.show()
 	$light.modulate = Color("7cb400")
