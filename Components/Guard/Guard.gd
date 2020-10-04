@@ -11,6 +11,7 @@ export var LOOKS_LEFT = false
 onready var fov = $Visual/Fov
 onready var world = get_node("/root/World")
 onready var anim = $AnimationPlayer
+onready var alarm_timeout = $AlarmTimeout 
 
 ### Run variables ######################################
 const STATE_PATROL = 1
@@ -61,8 +62,8 @@ func alarm_enabled(enabled):
 
 
 func disable_alarm_mode():
-	$AlarmTimeout.wait_time = rand_range(1.0, 2.0)
-	$AlarmTimeout.start()
+	alarm_timeout.wait_time = rand_range(1.0, 2.0)
+	alarm_timeout.start()
 
 
 func _physics_process(delta):
@@ -72,36 +73,32 @@ func _physics_process(delta):
 	motion.y += GRAVITY * delta
 
 	if !dead:
-		if shoot_cooldown > 0:
-			shoot_cooldown -= delta
-	
 		var see_player = false
 	
 		if fov.is_colliding():
 			var collider = fov.get_collider()
 			if collider.is_in_group("Player"):
+				if shoot_cooldown > 0:
+					shoot_cooldown -= delta
+			
 				see_player = true
 				seen_player()
 		
 		if state == STATE_ALERT and !world.alarm and !see_player:
-			if $AlarmTimeout.is_stopped():
-				$AlarmTimeout.wait_time = rand_range(1.0, 2.0)
-				$AlarmTimeout.start()
+			if alarm_timeout.is_stopped():
+				alarm_timeout.wait_time = rand_range(1.0, 2.0)
+				alarm_timeout.start()
 				
 		if current_route != []:
 			patrolling_process(delta)
 			
 	if dead:
 		motion.x = lerp(motion.x, 0, 4 * delta)
-		if is_on_floor():
-			totally_disable()
-	
+
 	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
 			
 func totally_disable():
 	pause = true
-	#$VisibilityEnabler2D.queue_free()
-	$CollisionShape2D.queue_free()
 	set_physics_process(false)
 	
 func patrolling_process(delta):
@@ -135,10 +132,14 @@ func get_next_patrol_point():
 
 func die():
 	dead = true
+	collision_layer = 2
 	$Visual/Fov.enabled = false
 	$Visual/Body/Gun/Hand2/Flashlight/Light2D.queue_free()
 	$Visual/Body/Hand/Flashlight/Light2D.queue_free()
-	
+
+	$DisableTimer.wait_time = 5
+	$DisableTimer.start()
+		
 	remove_from_group("Enemy")
 	if $Visual.scale.x < 0:
 		$AnimationPlayer.play("DieLeft")		
@@ -196,3 +197,7 @@ func pause_signal(paused):
 		$AnimationPlayer.stop()
 	else:
 		$AnimationPlayer.play(paused_anim)
+
+
+func _on_DisableTimer_timeout():
+	totally_disable()
