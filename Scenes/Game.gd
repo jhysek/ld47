@@ -14,6 +14,7 @@ var current_charge_cooldown = CHARGE_COOLDOWN
 var alarm = false
 var started = false
 var paused = false
+var generator = false
 
 func _ready():
 	$CanvasLayer/Transition.open()
@@ -34,7 +35,7 @@ func _process(delta):
 	if paused:
 		return
 		
-	if started and electricity.value > 0:
+	if started and !generator and electricity.value > 0:
 		electricity.value -= delta
 
 		if (alarm):
@@ -45,6 +46,14 @@ func _process(delta):
 		
 	current_charge_cooldown -= delta	
 
+
+func generator_turned_on():
+	electricity.value = 5
+	generator = true
+	if alarm:
+		stop_alarm()
+	$GameFinishedTimer.start()
+	
 
 func charge(value):
 	if current_charge_cooldown <= 0:
@@ -82,3 +91,8 @@ func unpause():
 
 func _on_ButtonResume2_pressed():
 	$CanvasLayer/Transition.close("res://Scenes/Menu.tscn")
+
+
+func _on_GameFinishedTimer_timeout():
+	$CanvasLayer/Transition.close("res://Scenes/Outro.tscn")
+	print("GAME FINISHED!")
