@@ -16,12 +16,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0.01, 18.108 )
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 2.90919
 height = 48.7829
 
-[sub_resource type="Animation" id=2]
-resource_name = "Die"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
 tracks/0/interp = 1
@@ -248,7 +247,7 @@ tracks/18/keys = {
 "times": PoolRealArray( 0, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ SubResource( 1 ), SubResource( 1 ), SubResource( 10 ) ]
+"values": [ SubResource( 1 ), SubResource( 1 ), SubResource( 2 ) ]
 }
 tracks/19/type = "value"
 tracks/19/path = NodePath("CollisionShape2D:shape:radius")
@@ -263,7 +262,7 @@ tracks/19/keys = {
 "values": [ 2.90919 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 resource_name = "DieLeft"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body:position")
@@ -494,7 +493,7 @@ tracks/18/keys = {
 "values": [ Vector2( -0.4, 0.4 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -546,7 +545,7 @@ tracks/3/keys = {
 "values": [ Vector2( -40.4347, -112.6 ), Vector2( -40.3565, -121.166 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/Body/Gun:rotation_degrees")
 tracks/0/interp = 1
@@ -584,8 +583,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "WalkLeft"
+[sub_resource type="Animation" id=7]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -661,8 +659,7 @@ tracks/5/keys = {
 "values": [ 2.0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "WalkRight"
+[sub_resource type="Animation" id=8]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -847,10 +844,14 @@ stream = ExtResource( 13 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 3.0
-anims/Die = SubResource( 2 )
-anims/DieLeft = SubResource( 9 )
-anims/Idle = SubResource( 3 )
-anims/Shoot = SubResource( 4 )
-anims/WalkLeft = SubResource( 5 )
-anims/WalkRight = SubResource( 6 )
+anims/Die = SubResource( 3 )
+anims/DieLeft = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Shoot = SubResource( 6 )
+anims/WalkLeft = SubResource( 7 )
+anims/WalkRight = SubResource( 8 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true
 [connection signal="timeout" from="AlarmTimeout" to="." method="_on_AlarmTimeout_timeout"]

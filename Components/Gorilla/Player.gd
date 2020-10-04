@@ -114,6 +114,7 @@ func start_world():
 func dash():
 	anim.play("Dash")
 	$Sfx.get_node("Kill" + str(randi() % 5 + 1)).play()
+	cam.shake(0.4, 100, 20)
 	dash_timeout = DASH_DURATION
 	dashing = true
 

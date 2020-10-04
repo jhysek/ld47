@@ -3,6 +3,7 @@ extends Sprite
 onready var world = get_node("/root/World")
 
 func power_on():
+	$Light2D.enabled = true
 	$TurnOn.play()
 	$HandleOff.hide()
 	$HandleOn.show()

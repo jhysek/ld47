@@ -99,9 +99,10 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
 			
 func totally_disable():
-	print("TOTALLY DISABLING")
 	pause = true
+	#$VisibilityEnabler2D.queue_free()
 	$CollisionShape2D.queue_free()
+	set_physics_process(false)
 	
 func patrolling_process(delta):
 	motion.x = 0
