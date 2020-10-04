@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/kill5.wav-222c2437af191e0bdb01aa33f55d4edb.sample"
+
+[deps]
+
+source_file="res://Components/Gorilla/Assets/kill5.wav"
+dest_files=[ "res://.import/kill5.wav-222c2437af191e0bdb01aa33f55d4edb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

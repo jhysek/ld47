@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jump_start.wav-4a3f07b790ce295e2ad1e8bcc5a06d49.sample"
+
+[deps]
+
+source_file="res://Components/Gorilla/Assets/jump_start.wav"
+dest_files=[ "res://.import/jump_start.wav-4a3f07b790ce295e2ad1e8bcc5a06d49.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

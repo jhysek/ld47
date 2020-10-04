@@ -71,7 +71,7 @@ func controlled_process(delta):
 			airtime = 0
 			jump_timeout = 0
 			anim.play("Jump")
-			$Sfx/Jump.play()
+			$Sfx/JumpStart.play()
 			motion.y = JUMP_SPEED
 			sfx_run.stop()
 	
@@ -113,6 +113,7 @@ func start_world():
 
 func dash():
 	anim.play("Dash")
+	$Sfx.get_node("Kill" + str(randi() % 5 + 1)).play()
 	dash_timeout = DASH_DURATION
 	dashing = true
 
@@ -129,7 +130,6 @@ func player_physics_process(delta):
 	motion.y += GRAVITY * delta
 
 	if attack_range.is_colliding():
-		print("COLLIDING!")
 		var collider = attack_range.get_collider()
 		if collider.is_in_group("Enemy"):
 			collider.remove_from_group("Enemy")

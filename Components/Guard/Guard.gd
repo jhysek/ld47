@@ -5,6 +5,7 @@ export var GRAVITY = 70 * 70
 export var SPEED   = 2000
 export var ALERT_SPEED   = 3000
 export var SHOOT_COOLDOWN = 0.5
+export var LOOKS_LEFT = false
 
 ### Nodes ##############################################
 onready var fov = $Visual/Fov
@@ -31,6 +32,8 @@ var paused_anim = null
 
 func _ready():
 	initialize_routes()
+	if LOOKS_LEFT:
+		$Visual.scale.x = $Visual.scale.x * -1
 	world.connect("alarm", self, "alarm_enabled")
 	world.connect("pause", self, "pause_signal")
 	set_physics_process(true)
@@ -97,8 +100,6 @@ func _physics_process(delta):
 func patrolling_process(delta):
 	motion.x = 0
 	
-	print("target: " + str(target.x) + " pos: " + str(position.x))
-	
 	if abs(target.x - position.x) < 20:
 		get_next_patrol_point()		
 	else:
@@ -107,6 +108,9 @@ func patrolling_process(delta):
 
 
 func get_next_patrol_point():
+	if current_route.size() == 0:
+		return
+		
 	next_patrol_point_idx = (next_patrol_point_idx + 1) % current_route.size()
 	target = current_route[next_patrol_point_idx]
 		

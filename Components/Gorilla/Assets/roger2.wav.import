@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/roger2.wav-d9f4545fd129fe25449d52f29c26a6ec.sample"
+
+[deps]
+
+source_file="res://Components/Gorilla/Assets/roger2.wav"
+dest_files=[ "res://.import/roger2.wav-d9f4545fd129fe25449d52f29c26a6ec.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Components/ElectricDoor/ElectricDoor.gd" type="Script" id=1]
+[ext_resource path="res://Components/Box/Box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/ElectricDoor/01.png" type="Texture" id=4]
+[ext_resource path="res://Components/ElectricDoor/02.png" type="Texture" id=5]
+[ext_resource path="res://Components/ElectricDoor/03.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.85547, 46.7205 )
+
+[node name="ElectricDoor" type="Node2D"]
+position = Vector2( -1166.41, 623.626 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="Box" parent="." instance=ExtResource( 3 )]
+position = Vector2( -32.7981, -28.6406 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -1.93958, 0.430969 )
+shape = SubResource( 2 )
