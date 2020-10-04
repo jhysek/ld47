@@ -61,7 +61,7 @@ func alarm_enabled(enabled):
 
 
 func disable_alarm_mode():
-	$AlarmTimeout.wait_time = rand_range(2.0, 4.0)
+	$AlarmTimeout.wait_time = rand_range(1.0, 2.0)
 	$AlarmTimeout.start()
 
 
@@ -85,7 +85,7 @@ func _physics_process(delta):
 		
 		if state == STATE_ALERT and !world.alarm and !see_player:
 			if $AlarmTimeout.is_stopped():
-				$AlarmTimeout.wait_time = rand_range(3.0, 5.0)
+				$AlarmTimeout.wait_time = rand_range(1.0, 2.0)
 				$AlarmTimeout.start()
 				
 		if current_route != []:
@@ -93,9 +93,15 @@ func _physics_process(delta):
 			
 	if dead:
 		motion.x = lerp(motion.x, 0, 4 * delta)
+		if is_on_floor():
+			totally_disable()
 	
 	motion = move_and_slide(motion, Vector2(0, -1), 1, 4)
 			
+func totally_disable():
+	print("TOTALLY DISABLING")
+	pause = true
+	$CollisionShape2D.queue_free()
 	
 func patrolling_process(delta):
 	motion.x = 0
@@ -103,7 +109,6 @@ func patrolling_process(delta):
 	if abs(target.x - position.x) < 20:
 		get_next_patrol_point()		
 	else:
-		print(patrol_motion)
 		motion.x = patrol_motion.x * delta
 
 
@@ -128,12 +133,18 @@ func get_next_patrol_point():
 	
 
 func die():
-	$CPUParticles2D.emitting = true
-	remove_from_group("Enemy")
-	$AnimationPlayer.play("Die")
-	$Sfx/Death.play()
-	$Visual/Fov.enabled = false
 	dead = true
+	$Visual/Fov.enabled = false
+	$Visual/Body/Gun/Hand2/Flashlight/Light2D.queue_free()
+	$Visual/Body/Hand/Flashlight/Light2D.queue_free()
+	
+	remove_from_group("Enemy")
+	if $Visual.scale.x < 0:
+		$AnimationPlayer.play("DieLeft")		
+	else:
+		$AnimationPlayer.play("Die")
+	$Sfx/Death.play()
+	
 	world.disconnect("alarm", self, "alarm_enabled")
 
 func seen_player():

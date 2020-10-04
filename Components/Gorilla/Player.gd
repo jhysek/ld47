@@ -150,7 +150,9 @@ func player_physics_process(delta):
 
 func die():
 	if !dead:
+		dashing = false
 		dead = true
+		anim.stop()
 		anim.play("Die")
 		world.player_died()
 

@@ -12,7 +12,7 @@ onready var electricity = $CanvasLayer/Electricity
 ### run variables ###################################
 var current_charge_cooldown = CHARGE_COOLDOWN
 var alarm = false
-var started = false
+var started = true
 var paused = false
 var generator = false
 
