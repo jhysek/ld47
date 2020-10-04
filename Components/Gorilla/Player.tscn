@@ -1293,7 +1293,7 @@ texture = ExtResource( 1 )
 offset = Vector2( -12.3745, 13.1706 )
 
 [node name="AttackRange" type="RayCast2D" parent="Visual"]
-position = Vector2( 68.3334, -17.0834 )
+position = Vector2( 68.333, 10 )
 scale = Vector2( 2, 2 )
 enabled = true
 cast_to = Vector2( 90, 0 )
