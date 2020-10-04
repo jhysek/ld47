@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Components/Transition/Transition.tscn" type="PackedScene" id=2]
@@ -23,7 +23,6 @@
 [ext_resource path="res://Assets/menu_loop.ogg" type="AudioStream" id=21]
 [ext_resource path="res://Components/Box/Box.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Components/Checkpoint/Checkpoint.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Components/Guard/Assets/head.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.905882, 0.737255, 0.0627451, 1 )
@@ -178,19 +177,14 @@ margin_top = 15.1782
 margin_right = -62.3019
 margin_bottom = 46.1782
 custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.839216, 0, 0, 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Kills"]
-position = Vector2( -19.5741, 10.7638 )
-scale = Vector2( 0.403015, 0.414928 )
-texture = ExtResource( 24 )
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Kills/Sprite"]
-position = Vector2( 3.10071, -16.2035 )
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Kills"]
+position = Vector2( -21.1138, 11.1448 )
+scale = Vector2( 0.563721, 0.587113 )
 texture = ExtResource( 6 )
 
 [node name="Time" type="Label" parent="CanvasLayer"]
@@ -209,6 +203,10 @@ __meta__ = {
 [node name="UI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.688751
+margin_top = -1.51524
+margin_right = 0.688721
+margin_bottom = -1.51523
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -1,18 +1,201 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Components/Gorilla/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/tilemap.tres" type="TileSet" id=2]
+[ext_resource path="res://Components/Wheel/Wheel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Outro.gd" type="Script" id=4]
+[ext_resource path="res://Assets/light.png" type="Texture" id=5]
+[ext_resource path="res://Assets/bg.png" type="Texture" id=6]
+[ext_resource path="res://Assets/yoster-island.regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/new_dynamicfont.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/love.png" type="Texture" id=9]
+[ext_resource path="res://Assets/bubble.png" type="Texture" id=10]
+[ext_resource path="res://Assets/smile.png" type="Texture" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Outro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Girl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -136.288, 63.9146 ), Vector2( 42.6102, 63.9146 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.3, 3, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "girl_stop"
+}, {
+"args": [  ],
+"method": "play_roger"
+}, {
+"args": [  ],
+"method": "play_roger2"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5.6, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5.6, 6.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Girl/Sprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.3, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Player/Sprite2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 4.7, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.294118, 0.415686, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 7 )
 
 [node name="Outro" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 702.758, -299.97 )
+texture = ExtResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -262155, 4, 65540, -262154, 4, 65540, -262153, 4, 65540, -262152, 4, 65540, -262151, 4, 65540, -262150, 4, 65540, -262149, 4, 65540, -262148, 4, 65540, -262147, 4, 65540, -262146, 4, 65540, -262145, 4, 65540, -327680, 4, 65540, -196619, 4, 65540, -196618, 4, 196610, -196617, 4, 196610, -196616, 4, 196610, -196615, 4, 196610, -196614, 4, 196610, -196613, 4, 196610, -196612, 4, 196610, -196611, 4, 196610, -196610, 4, 196610, -196609, 4, 196610, -262144, 4, 65540, -131083, 4, 65540, -131082, 4, 196610, -131081, 4, 196610, -131080, 4, 196610, -131079, 4, 196610, -131078, 4, 196610, -131077, 4, 196610, -131076, 4, 196610, -131075, 4, 196610, -131074, 4, 196610, -131073, 4, 196610, -196608, 4, 65540, -65547, 4, 65540, -65546, 4, 196610, -65545, 4, 196610, -65544, 4, 196610, -65543, 4, 196610, -65542, 4, 196610, -65541, 4, 196610, -65540, 4, 196610, -65539, 4, 196610, -65538, 4, 196610, -65537, 4, 196610, -131072, 4, 65540, -11, 4, 65540, -10, 4, 196610, -9, 4, 196610, -8, 4, 196610, -7, 4, 196610, -6, 4, 196610, -5, 4, 196610, -4, 4, 196610, -3, 4, 196610, -2, 4, 196610, -1, 4, 196610, -65536, 4, 196610, 65525, 4, 65540, 65526, 4, 196610, 65527, 4, 196610, 65528, 4, 196610, 65529, 4, 196610, 65530, 4, 196610, 65531, 4, 196610, 65532, 4, 196610, 65533, 4, 196610, 65534, 4, 196610, 65535, 4, 196610, 0, 4, 196610, 131061, 4, 65540, 131062, 4, 196610, 131063, 4, 196610, 131064, 4, 196610, 131065, 4, 196610, 131066, 4, 196610, 131067, 4, 196610, 131070, 4, 196610, 131071, 4, 196610, 65536, 4, 196610, 196597, 4, 65540, 196598, 4, 196610, 196599, 4, 196610, 196600, 4, 196610, 196601, 4, 196610, 196602, 4, 196610, 196603, 4, 196610, 196604, 4, 196610, 196605, 4, 196610, 196606, 4, 196610, 196607, 4, 196610, 131072, 4, 196610, 262131, 4, 131075, 262132, 4, 131075, 262133, 4, 131075, 262134, 4, 131075, 262135, 4, 131075, 262136, 4, 131075, 262137, 4, 131075, 262138, 4, 131075, 262139, 4, 131075, 262140, 4, 131075, 262141, 4, 131075, 262142, 4, 131075, 262143, 4, 131075, 196608, 4, 131075, 196609, 4, 131075, 196610, 4, 131075, 196611, 4, 131075, 196612, 4, 131075, 196613, 4, 131075, 196614, 4, 131075, 196615, 4, 131075, 196616, 4, 131075, 196617, 4, 131075, 196618, 4, 131075, 196619, 4, 131075, 327667, 4, 131074, 327668, 4, 131074, 327669, 4, 131074, 327670, 4, 131074, 327671, 4, 131074, 327672, 4, 131074, 327673, 4, 131074, 327674, 4, 131074, 327675, 4, 131074, 327676, 4, 131074, 327677, 4, 131074, 327678, 4, 131074, 327679, 4, 131074, 262144, 4, 131074, 262145, 4, 131074, 262146, 4, 131074, 262147, 4, 131074, 262148, 4, 131074, 262149, 4, 131074, 262150, 4, 131074, 262151, 4, 131074, 262152, 4, 131074, 262153, 4, 131074, 262154, 4, 131074, 262155, 4, 131074, 393203, 4, 131074, 393204, 4, 131074, 393205, 4, 131074, 393206, 4, 131074, 393207, 4, 131074, 393208, 4, 131074, 393209, 4, 131074, 393210, 4, 131074, 393211, 4, 131074, 393212, 4, 131074, 393213, 4, 131074, 393214, 4, 131074, 393215, 4, 131074, 327680, 4, 131074, 327681, 4, 131074, 327682, 4, 131074, 327683, 4, 131074, 327684, 4, 131074, 327685, 4, 131074, 327686, 4, 131074, 327687, 4, 131074, 327688, 4, 131074, 327689, 4, 131074, 327690, 4, 131074, 327691, 4, 131074, 458739, 4, 131074, 458740, 4, 131074, 458741, 4, 131074, 458742, 4, 131074, 458743, 4, 131074, 458744, 4, 131074, 458745, 4, 131074, 458746, 4, 131074, 458747, 4, 131074, 458748, 4, 131074, 458749, 4, 131074, 458750, 4, 131074, 458751, 4, 131074, 393216, 4, 131074, 393217, 4, 131074, 393218, 4, 131074, 393219, 4, 131074, 393220, 4, 131074, 393221, 4, 131074, 393222, 4, 131074, 393223, 4, 131074, 393224, 4, 131074, 393225, 4, 131074, 393226, 4, 131074, 393227, 4, 131074, 524275, 4, 131074, 524276, 4, 131074, 524277, 4, 131074, 524278, 4, 131074, 524279, 4, 131074, 524280, 4, 131074, 524281, 4, 131074, 524282, 4, 131074, 524283, 4, 131074, 524284, 4, 131074, 524285, 4, 131074, 524286, 4, 131074, 524287, 4, 131074, 458752, 4, 131074, 458753, 4, 131074, 458754, 4, 131074, 458755, 4, 131074, 458756, 4, 131074, 458757, 4, 131074, 458758, 4, 131074, 458759, 4, 131074, 458760, 4, 131074, 458761, 4, 131074, 458762, 4, 131074, 458763, 4, 131074 )
+
+[node name="Wheel" parent="." instance=ExtResource( 3 )]
+position = Vector2( -205.843, -0.313293 )
+
+[node name="Gorilla" parent="Wheel" index="5"]
+visible = false
+
+[node name="Girl" parent="." instance=ExtResource( 1 )]
+position = Vector2( -136.288, 63.9146 )
+PLAYER = false
+GIRL = true
+
+[node name="Sprite" type="Sprite" parent="Girl"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 41.8687, -56.7081 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 10 )
+
+[node name="love" type="Sprite" parent="Girl/Sprite"]
+position = Vector2( 1.1837, -8.56061 )
+texture = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 169.186, 64.8545 )
 PLAYER = false
 
-[node name="Girl" parent="." instance=ExtResource( 1 )]
-position = Vector2( -136.288, 63.9146 )
-scale = Vector2( -1, 1 )
-PLAYER = false
-GIRL = true
+[node name="Sprite2" type="Sprite" parent="Player"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 31.0653, -58.178 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 10 )
+
+[node name="smile" type="Sprite" parent="Player/Sprite2"]
+position = Vector2( 1.1837, -8.56061 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Outro"
+anims/Outro = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -268.171, -92.2171 )
+texture = ExtResource( 5 )
+color = Color( 0.203922, 1, 1, 1 )
+shadow_enabled = true
+
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -57.1199
+margin_top = 141.505
+margin_right = 57.8801
+margin_bottom = 175.505
+custom_styles/hover = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 51.9384
+margin_top = -161.115
+margin_right = 275.938
+margin_bottom = -84.1149
+custom_fonts/font = ExtResource( 8 )
+text = "Gorilla Power
+
+made in 48 hours
+for Ludum Dare 47 compo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[editable path="Wheel"]
