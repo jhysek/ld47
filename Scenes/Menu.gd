@@ -5,4 +5,4 @@ func _ready():
 	$SafeDoor/AnimationPlayer.play("Close")
 
 func _on_Start_Game_pressed():
-	$CanvasLayer/Transition.close("res://Scenes/Game.tscn")
+	$CanvasLayer/Transition.close("res://Scenes/Intro.tscn")
